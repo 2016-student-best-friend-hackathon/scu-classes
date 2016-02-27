@@ -1,10 +1,39 @@
-!!!
-%html
+!!! 5
+%html{ :lang => "en" }
   %head
-    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title ScuClasses
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
+    %meta{ :charset => "utf-8" }
+
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+
+    %title= content_for?(:title) ? yield(:title) : "Untitled"
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tag
+
   %body
+    .top-bar
+      .top-bar-left
+        %ul.dropdown.menu{"data-dropdown-menu" => ""}
+          %li.menu-text Site Title
+          %li
+            %a{:href => "#"} One
+            %ul.menu.vertical
+              %li
+                %a{:href => "#"} One
+              %li
+                %a{:href => "#"} Two
+              %li
+                %a{:href => "#"} Three
+          %li
+            %a{:href => "#"} Two
+          %li
+            %a{:href => "#"} Three
+      .top-bar-right
+        %ul.menu
+          %li
+            %input{:placeholder => "Search", :type => "search"}/
+          %li
+            %button.button{:type => "button"} Search
+
     = yield
